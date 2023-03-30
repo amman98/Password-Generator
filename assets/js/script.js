@@ -25,6 +25,7 @@ function writePassword() {
 
 }
 
+// store every character type in separate arrays
 var lowerCaseChars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 var upperCaseChars = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var numericChars = ['1','2','3','4','5','6','7','8','9','0'];
@@ -37,13 +38,14 @@ function generatePassword() {
   // check if length is between 8 and 128 characters, also check if input isn't a valid number
   while(length < 8 || length > 128 || isNaN(length)) {
     alert("Invalid length!");
-    length = prompt("Select a valid length between 8 and 128.");
+    length = prompt("Select a valid length between 8 and 128."); // reprompt user until given a valid length
   }
 
   var charList = [];
   confirmCharacters();
 
   var password = "";
+  // stores randomly generated password one character at a time in password variable
   for(var i = 0; i < length; i++) {
     password = password.concat(charList[Math.floor(Math.random() * charList.length)]); // grab a random character from the list of available characters
   }
@@ -63,6 +65,7 @@ function generatePassword() {
       return;
     }
 
+    // if statements decide which character types to include in generated password, based on user input
     if(hasLowerCase) {
       if(charList.length == 0) {
         charList = lowerCaseChars;
